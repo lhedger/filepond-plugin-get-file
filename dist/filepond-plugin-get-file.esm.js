@@ -40,7 +40,11 @@ const getDownloadIcon = (labelButtonDownload) => {
 const downloadFile = (item, allowDownloadByUrl) => {
   // if client want to download file from remote server
   if (allowDownloadByUrl && item.getMetadata('url')) {
-    location.href = item.getMetadata('url'); // full path to remote server is stored in metadata with key 'url'
+    //location.href = item.getMetadata('url'); // full path to remote server is stored in metadata with key 'url'
+    Object.assign(document.createElement('a'), {
+      target: '_blank',
+      href: item.getMetadata('url'),
+    }).click();
   } else {
     // create a temporary hyperlink to force the browser to download the file
     const a = document.createElement('a');
